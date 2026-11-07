@@ -6,11 +6,16 @@
   const GOLD = C(201, 165, 107), BLUE = C(46, 124, 214);
   const zones = () => ({ left: 11, top: 19, right: 11, bottom: 19, depth: 0.12, preset: 'full' });
   // Um anel interno (6 pixels) e uma moldura (5), como o mapa da fan Acegeek.
+  // Pixels 1–6 acendem um LED no anel e outro na moldura (espelho infinito);
+  // 7–11 só na moldura, como o mapa medido da fan Acegeek.
+  const at = (r, a) => [+(0.5 + r * Math.sin(a)).toFixed(3), +(0.5 - r * Math.cos(a)).toFixed(3)];
   const fanPoints = Array.from({ length: 11 }, (_, i) => {
-    const inner = i < 6;
-    const a = (inner ? i / 6 : (i - 6) / 5) * Math.PI * 2 + (inner ? 0 : 0.3);
-    const r = inner ? 0.2 : 0.42;
-    return [[+(0.5 + r * Math.sin(a)).toFixed(3), +(0.5 - r * Math.cos(a)).toFixed(3)]];
+    if (i < 6) {
+      const a = (i / 6) * Math.PI * 2;
+      return [at(0.2, a), at(0.42, a + 0.45)];
+    }
+    // Nos vãos entre os segundos pontos dos pixels 1–6 (26° + 60°·k).
+    return [at(0.42, ((56 + 60 * (i - 6)) * Math.PI) / 180)];
   });
   const output = (kind, pin, extra) => ({
     name: kind === 'fan' ? 'Cooler' : 'Fita', pin, kind, color_order: 2, parallel: 1,
@@ -45,6 +50,8 @@
     output('fan', 3, { name: 'Traseira', parallel: 3, cascade: 2, leds: fanLeds() }),
     output('strip', 9, { leds: { count: 113, offset: 0, reverse: false, map: [], points: [], shape: 'strip', fans: 1 } }),
   ];
+  // Para os prints: Arduino conectado na COM4 (firmware v2 de mentira).
+  cfg.serial = { port: 'COM4', baud: 1000000, simulate: false };
   let running = false;
   let autostart = { enabled: true, command: '"C:\\Users\\voce\\AppData\\Local\\Halo Studio\\Halo Studio.exe" --autostart', current: true, dev: false };
   let firmware = { version: '', reply: '', outputs: '', pins: '', max: 0, ok: false };

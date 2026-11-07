@@ -1,0 +1,57 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1280" height="340" viewBox="0 0 1280 340">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#0A1119"/>
+      <stop offset="1" stop-color="#0B2438"/>
+    </linearGradient>
+    <linearGradient id="ring" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#3BD8FF"/>
+      <stop offset="0.3" stop-color="#6C7CFF"/>
+      <stop offset="0.55" stop-color="#FF3BD5"/>
+      <stop offset="0.8" stop-color="#FFB13B"/>
+      <stop offset="1" stop-color="#C9A56B"/>
+    </linearGradient>
+    <linearGradient id="strip" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#3BD8FF"/>
+      <stop offset="0.25" stop-color="#6C7CFF"/>
+      <stop offset="0.5" stop-color="#FF3BD5"/>
+      <stop offset="0.75" stop-color="#FFB13B"/>
+      <stop offset="1" stop-color="#3BFF8A"/>
+    </linearGradient>
+    <radialGradient id="glow" cx="0.5" cy="0.5" r="0.5">
+      <stop offset="0" stop-color="#6C7CFF" stop-opacity="0.35"/>
+      <stop offset="1" stop-color="#6C7CFF" stop-opacity="0"/>
+    </radialGradient>
+    <filter id="blur" x="-50%" y="-50%" width="200%" height="200%">
+      <feGaussianBlur stdDeviation="10"/>
+    </filter>
+    <pattern id="dots" width="24" height="24" patternUnits="userSpaceOnUse">
+      <circle cx="2" cy="2" r="1" fill="#233646"/>
+    </pattern>
+  </defs>
+
+  <rect width="1280" height="340" rx="24" fill="url(#bg)"/>
+  <rect width="1280" height="340" rx="24" fill="url(#dots)" opacity="0.6"/>
+
+  <!-- halo -->
+  <circle cx="230" cy="170" r="150" fill="url(#glow)"/>
+  <circle cx="230" cy="170" r="88" fill="none" stroke="url(#ring)" stroke-width="22" filter="url(#blur)" opacity="0.9"/>
+  <circle cx="230" cy="170" r="88" fill="none" stroke="url(#ring)" stroke-width="10"/>
+  <circle cx="230" cy="170" r="60" fill="#0A1119" stroke="#233646" stroke-width="2"/>
+  <g fill="#E6EEF5" opacity="0.9">
+    <path d="M230 128 c14 0 22 12 18 26 l-18 16 z"/>
+    <path d="M272 170 c0 14 -12 22 -26 18 l-16 -18 z"/>
+    <path d="M230 212 c-14 0 -22 -12 -18 -26 l18 -16 z"/>
+    <path d="M188 170 c0 -14 12 -22 26 -18 l16 18 z"/>
+  </g>
+  <circle cx="230" cy="170" r="9" fill="#C9A56B"/>
+
+  <!-- título -->
+  <text x="410" y="150" fill="#E6EEF5" font-family="Inter, 'Segoe UI', system-ui, sans-serif" font-size="76" font-weight="700" letter-spacing="-1">Halo LEDs</text>
+  <text x="414" y="200" fill="#A3B1BE" font-family="Inter, 'Segoe UI', system-ui, sans-serif" font-size="26" font-weight="500">Fans e fita de LED reagindo à tela, ao som e a efeitos.</text>
+  <text x="414" y="236" fill="#C9A56B" font-family="Inter, 'Segoe UI', system-ui, sans-serif" font-size="20" font-weight="600" letter-spacing="3">ARDUINO  ·  WS2812B  ·  WINDOWS</text>
+
+  <!-- fita de LED -->
+  <rect x="414" y="272" width="800" height="6" rx="3" fill="url(#strip)" filter="url(#blur)" opacity="0.8"/>
+  <rect x="414" y="273" width="800" height="4" rx="2" fill="url(#strip)"/>
+</svg>
