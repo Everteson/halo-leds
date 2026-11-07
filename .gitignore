@@ -1,0 +1,23 @@
+# Dependências e builds
+node_modules/
+target/
+**/src-tauri/gen/
+
+# Protótipo antigo (usava OpenRGB) — fica só local
+app/
+
+# Programas de terceiros baixados (OpenRGB etc.), não vão para o repositório
+tools/OpenRGB/
+tools/OpenRGB_*.zip
+
+# Configuração pessoal e relatórios locais
+halo-studio/dev/config-do-halo.json
+LatMon.Report.*
+.claude/
+
+# Mockups gerados com outro nome/marca; o diagrama de ligação fica
+docs/referencias/identidade-visual-*.webp
+
+# Sistema
+Thumbs.db
+desktop.ini

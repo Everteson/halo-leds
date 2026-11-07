@@ -1,0 +1,618 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Halo Studio</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <svg width="0" height="0" style="position:absolute" aria-hidden="true">
+    <defs>
+      <symbol id="i-screen" viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="12" rx="2"/><path d="M8 20h8M12 16v4"/></symbol>
+      <symbol id="i-game" viewBox="0 0 24 24"><path d="M7 8h10a4 4 0 0 1 4 4.5l-.6 3.2a2.5 2.5 0 0 1-4.3 1.2L14.5 15h-5l-1.6 1.9a2.5 2.5 0 0 1-4.3-1.2L3 12.5A4 4 0 0 1 7 8z"/><path d="M8 11v3M6.5 12.5h3M15.5 12h.01M17.5 13.5h.01"/></symbol>
+      <symbol id="i-music" viewBox="0 0 24 24"><path d="M9 18V5l11-2v13"/><circle cx="6" cy="18" r="3"/><circle cx="17" cy="16" r="3"/></symbol>
+      <symbol id="i-wand" viewBox="0 0 24 24"><path d="M4 20 15 9M14 4v2M19 9h2M17.5 5.5l1.5-1.5M9 4l.5 1.5M19 14l1.5.5"/><path d="m13 7 4 4"/></symbol>
+      <symbol id="i-chip" viewBox="0 0 24 24"><rect x="6" y="6" width="12" height="12" rx="2"/><rect x="9.5" y="9.5" width="5" height="5" rx="1"/><path d="M9 2v4M15 2v4M9 18v4M15 18v4M2 9h4M2 15h4M18 9h4M18 15h4"/></symbol>
+      <symbol id="i-gear" viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.7 1.7 0 0 0 .3 1.8l.1.1a2 2 0 1 1-2.8 2.8l-.1-.1a1.7 1.7 0 0 0-1.8-.3 1.7 1.7 0 0 0-1 1.5V21a2 2 0 1 1-4 0v-.1a1.7 1.7 0 0 0-1.1-1.5 1.7 1.7 0 0 0-1.8.3l-.1.1a2 2 0 1 1-2.8-2.8l.1-.1a1.7 1.7 0 0 0 .3-1.8 1.7 1.7 0 0 0-1.5-1H3a2 2 0 1 1 0-4h.1a1.7 1.7 0 0 0 1.5-1.1 1.7 1.7 0 0 0-.3-1.8l-.1-.1a2 2 0 1 1 2.8-2.8l.1.1a1.7 1.7 0 0 0 1.8.3H9a1.7 1.7 0 0 0 1-1.5V3a2 2 0 1 1 4 0v.1a1.7 1.7 0 0 0 1 1.5 1.7 1.7 0 0 0 1.8-.3l.1-.1a2 2 0 1 1 2.8 2.8l-.1.1a1.7 1.7 0 0 0-.3 1.8V9a1.7 1.7 0 0 0 1.5 1H21a2 2 0 1 1 0 4h-.1a1.7 1.7 0 0 0-1.5 1z"/></symbol>
+      <symbol id="i-play" viewBox="0 0 24 24"><path d="M7 4.5v15l13-7.5z" fill="currentColor" stroke="none"/></symbol>
+      <symbol id="i-stop" viewBox="0 0 24 24"><rect x="6" y="6" width="12" height="12" rx="1.5" fill="currentColor" stroke="none"/></symbol>
+      <symbol id="i-refresh" viewBox="0 0 24 24"><path d="M20 11a8 8 0 0 0-14.3-4.9L4 8M4 4v4h4M4 13a8 8 0 0 0 14.3 4.9L20 16M20 20v-4h-4"/></symbol>
+      <symbol id="i-sun" viewBox="0 0 24 24"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></symbol>
+      <symbol id="i-grid" viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/></symbol>
+      <symbol id="i-link" viewBox="0 0 24 24"><path d="M7 15a3 3 0 1 1 0-6c2.5 0 3.5 2 5 3s2.5 3 5 3a3 3 0 1 0 0-6c-2.5 0-3.5 2-5 3s-2.5 3-5 3z"/></symbol>
+      <symbol id="i-bolt" viewBox="0 0 24 24"><path d="M13 2 4 14h7l-1 8 9-12h-7z"/></symbol>
+      <symbol id="i-plug" viewBox="0 0 24 24"><path d="M9 2v6M15 2v6M6 8h12v3a6 6 0 0 1-12 0zM12 17v5"/></symbol>
+      <symbol id="i-info" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 11v5M12 8h.01"/></symbol>
+      <symbol id="i-folder" viewBox="0 0 24 24"><path d="M3 7a2 2 0 0 1 2-2h4l2 2h8a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/></symbol>
+      <symbol id="i-min" viewBox="0 0 24 24"><path d="M6 12h12"/></symbol>
+      <symbol id="i-max" viewBox="0 0 24 24"><rect x="6" y="6" width="12" height="12" rx="1"/></symbol>
+      <symbol id="i-close" viewBox="0 0 24 24"><path d="M6 6l12 12M18 6 6 18"/></symbol>
+    </defs>
+  </svg>
+
+  <header class="titlebar" data-tauri-drag-region>
+    <div class="brand" data-tauri-drag-region>
+      <span class="logo" aria-hidden="true"></span>
+      <span class="brand-name" data-tauri-drag-region>Halo <small>STUDIO</small></span>
+      <span class="version" data-tauri-drag-region>v0.1</span>
+    </div>
+    <div class="chips" data-tauri-drag-region>
+      <span class="chip" id="chip-output"><span class="dot"></span><span class="txt">Simulação</span></span>
+      <span class="chip"><span class="muted">FPS</span> <b id="chip-fps">0</b></span>
+      <span class="chip"><b id="chip-leds">0</b> <span class="muted">LEDs</span></span>
+    </div>
+    <div class="win-buttons">
+      <button class="win-btn" id="win-min" title="Minimizar"><svg><use href="#i-min"/></svg></button>
+      <button class="win-btn" id="win-max" title="Maximizar"><svg><use href="#i-max"/></svg></button>
+      <button class="win-btn close" id="win-close" title="Fechar"><svg><use href="#i-close"/></svg></button>
+    </div>
+  </header>
+
+  <div class="layout">
+    <nav class="sidebar">
+      <button class="nav-item active" data-view="tela"><svg><use href="#i-screen"/></svg>Tela</button>
+      <button class="nav-item" data-view="jogos"><svg><use href="#i-game"/></svg>Jogos</button>
+      <button class="nav-item" data-view="audio"><svg><use href="#i-music"/></svg>Áudio</button>
+      <button class="nav-item" data-view="efeitos"><svg><use href="#i-wand"/></svg>Efeitos</button>
+      <button class="nav-item" data-view="dispositivos"><svg><use href="#i-chip"/></svg>Dispositivos</button>
+      <button class="nav-item" data-view="config"><svg><use href="#i-gear"/></svg>Configurações</button>
+      <div class="sidebar-foot">
+        <div class="now-playing" id="now-playing"><span class="dot"></span><span class="txt">Parado</span></div>
+      </div>
+    </nav>
+
+    <main>
+      <!-- ===================== TELA ===================== -->
+      <section class="view active" id="view-tela">
+        <div class="split">
+          <div class="col-main">
+            <div class="kind-tabs" role="tablist">
+              <button class="kind-tab" data-tab="fan" role="tab"><svg><use href="#i-gear"/></svg>Cooler (CPU)<span class="n"></span></button>
+              <button class="kind-tab" data-tab="strip" role="tab"><svg><use href="#i-screen"/></svg>Fita (Monitor)<span class="n"></span></button>
+            </div>
+            <div class="card stage-card">
+              <div class="card-head">
+                <h2><svg><use href="#i-grid"/></svg>Zonas e Mapeamento</h2>
+                <div class="head-tools">
+                  <label class="mini-toggle"><input type="checkbox" id="opt-areas"><span></span>Mostrar áreas</label>
+                  <label class="mini-toggle"><input type="checkbox" id="opt-halo" checked><span></span>Halo</label>
+                </div>
+              </div>
+              <div class="stage" id="stage-tela">
+                <canvas class="halo"></canvas>
+                <canvas class="scene"></canvas>
+                <div class="stage-empty" id="tela-empty">
+                  <svg><use href="#i-screen"/></svg>
+                  <b>Pronto para capturar</b>
+                  <span>Clique em <em>Iniciar Halo</em> para ver a prévia e as cores das zonas.</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="info-row">
+              <div class="info-card">
+                <svg><use href="#i-screen"/></svg>
+                <div><b>Captura de Tela</b><small id="info-capture">Parada</small></div>
+              </div>
+              <div class="info-card">
+                <svg><use href="#i-chip"/></svg>
+                <div><b id="info-leds">60 LEDs</b><small id="info-zones">60 zonas ativas</small></div>
+              </div>
+              <div class="info-card">
+                <svg><use href="#i-link"/></svg>
+                <div><b id="info-out">Simulação</b><small id="info-out-sub">Arduino UNO</small></div>
+              </div>
+            </div>
+
+            <div class="action-row">
+              <button class="btn primary big start-btn"><svg><use href="#i-play"/></svg><span>Iniciar Halo</span></button>
+              <button class="btn square stop-btn" title="Parar"><svg><use href="#i-stop"/></svg></button>
+              <div class="stats">
+                <div><small>FPS</small><b class="st-fps">0</b></div>
+                <div><small>Latência</small><b class="st-lat">— ms</b></div>
+                <div class="grow"><small>Consumo</small><b class="st-ma">0 mA</b><span class="meter"><i class="st-meter"></i></span></div>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-side">
+            <div class="card out-card">
+              <div class="card-head"><h2><svg><use href="#i-chip"/></svg>Saída</h2>
+                <button class="btn small" data-goto="dispositivos">Editar saídas</button></div>
+              <div class="out-pick"></div>
+              <div class="field"><label>Modo</label><select class="mode-sel" data-bind="@.mode"></select></div>
+              <p class="hint out-hint"></p>
+              <div class="group-note"></div>
+            </div>
+
+            <div class="card" id="sound-card">
+              <div class="card-head"><h2><svg><use href="#i-music"/></svg><span id="sound-title">Reagir ao som</span></h2>
+                <label class="toggle inline" id="sound-toggle" title="Ligar ou desligar"><input type="checkbox" data-bind="@.sound.enabled"><span></span></label></div>
+              <p class="hint">As cores continuam as da tela; o brilho pulsa com o som que sai do PC (sem microfone).</p>
+              <label class="toggle" id="sound-vivid"><input type="checkbox" data-bind="@.sound.vivid"><span></span>Cor sempre viva (o brilho vem do som, não da cena escura)</label>
+              <div class="sound-fields">
+                <div class="field slider-field"><label>Força do grave</label>
+                  <input type="range" min="0" max="3" step="0.05" data-bind="@.sound.boost" data-type="float"><output class="val" data-fmt="pct"></output>
+                </div>
+                <div class="field slider-field"><label>Sensibilidade</label>
+                  <input type="range" min="1" max="10" step="0.5" data-bind="@.audio.sensitivity" data-type="float"><output class="val" data-fmt="dec1"></output>
+                </div>
+                <div class="field slider-field" id="sound-amount"><label>Intensidade</label>
+                  <input type="range" min="0" max="1" step="0.01" data-bind="@.sound.amount" data-type="float"><output class="val" data-fmt="pct"></output>
+                </div>
+                <div class="field slider-field"><label>Brilho mínimo</label>
+                  <input type="range" min="0" max="1" step="0.01" data-bind="@.sound.floor" data-type="float"><output class="val" data-fmt="pct"></output>
+                </div>
+                <div class="field"><label>Faixa</label>
+                  <select data-bind="@.sound.band">
+                    <option value="bass">Graves (batida)</option>
+                    <option value="all">Tudo (graves e volume)</option>
+                  </select>
+                </div>
+              </div>
+            </div>
+
+            <div class="card">
+              <div class="card-head"><h2><svg><use href="#i-screen"/></svg>Captura de Tela</h2></div>
+              <div class="field"><label>Monitor</label><select id="sel-monitor" data-bind="capture.monitor" data-type="int"></select></div>
+              <div class="field"><label>Modo de captura</label>
+                <select data-bind="capture.fps" data-type="int">
+                  <option value="60">Tempo real (60 FPS)</option>
+                  <option value="30">Econômico (30 FPS)</option>
+                  <option value="120">Alta taxa (120 FPS)</option>
+                </select>
+              </div>
+              <label class="toggle"><input type="checkbox" data-bind="capture.exclude_taskbar"><span></span>Excluir área da barra de tarefas</label>
+              <label class="toggle"><input type="checkbox" data-bind="capture.ignore_black_bars"><span></span>Ignorar faixas pretas (filmes)</label>
+            </div>
+
+            <div class="card" data-kind="strip">
+              <div class="card-head"><h2><svg><use href="#i-grid"/></svg>Zonas da fita</h2></div>
+              <p class="hint" data-kind="fan">Esta saída é uma fan: na tela ela usa a <b>Cor da tela</b> (cor dominante, mudando devagar). Escolha uma fita acima para ajustar as zonas.</p>
+              <div class="zones-fields" data-kind="strip">
+              <div class="field slider-field"><label>Total de zonas</label>
+                <input type="range" id="zones-total" min="4" max="300" step="1"><output id="zones-total-out" class="val"></output>
+              </div>
+              <div class="field"><label>Distribuição</label>
+                <select id="zones-preset">
+                  <option value="full">Borda completa</option>
+                  <option value="top_sides">Topo e laterais</option>
+                  <option value="top">Só em cima</option>
+                  <option value="sides">Só laterais</option>
+                  <option value="custom">Personalizada</option>
+                </select>
+              </div>
+              <div class="edges">
+                <label>Esq.<input type="number" min="0" max="300" data-edge="left"></label>
+                <label>Topo<input type="number" min="0" max="300" data-edge="top"></label>
+                <label>Dir.<input type="number" min="0" max="300" data-edge="right"></label>
+                <label>Base<input type="number" min="0" max="300" data-edge="bottom"></label>
+              </div>
+              <div class="field slider-field"><label>Profundidade</label>
+                <input type="range" min="0.03" max="0.4" step="0.01" data-bind="@.zones.depth" data-type="float"><output class="val" data-fmt="pct"></output>
+              </div>
+              </div>
+            </div>
+
+            <div class="card">
+              <div class="card-head"><h2><svg><use href="#i-sun"/></svg>Brilho e Cor</h2></div>
+              <div class="field slider-field"><label>Brilho global</label>
+                <input type="range" min="0" max="1" step="0.01" data-bind="color.brightness" data-type="float"><output class="val" data-fmt="pct"></output>
+              </div>
+              <div class="field slider-field"><label>Gama</label>
+                <input type="range" min="1" max="3" step="0.1" data-bind="color.gamma" data-type="float"><output class="val" data-fmt="dec1"></output>
+              </div>
+              <div class="field slider-field"><label>Saturação</label>
+                <input type="range" min="0" max="2" step="0.01" data-bind="color.saturation" data-type="float"><output class="val" data-fmt="pct"></output>
+              </div>
+              <div class="field slider-field"><label>Temperatura de cor</label>
+                <input type="range" class="temp" min="2500" max="10000" step="100" data-bind="color.temperature" data-type="int"><output class="val" data-fmt="kelvin"></output>
+              </div>
+              <div class="field slider-field"><label>Suavização</label>
+                <input type="range" min="0" max="0.95" step="0.01" data-bind="color.smoothing" data-type="float"><output class="val" data-fmt="pct"></output>
+              </div>
+              <div class="field toggle-field">
+                <label class="toggle"><input type="checkbox" data-bind="color.power_limit"><span></span>Limite total (todas as saídas)</label>
+                <select data-bind="color.max_current_ma" data-type="int" class="compact">
+                  <option value="450">450 mA (USB)</option>
+                  <option value="1000">1 A</option>
+                  <option value="2000">2 A</option>
+                  <option value="4000">4 A</option>
+                  <option value="6000">6 A</option>
+                  <option value="8000">8 A</option>
+                  <option value="10000">10 A</option>
+                  <option value="12000">12 A</option>
+                </select>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ===================== JOGOS ===================== -->
+      <section class="view" id="view-jogos">
+        <div class="placeholder card">
+          <svg><use href="#i-game"/></svg>
+          <h2>Jogos</h2>
+          <p>Em breve: perfis por jogo, que trocam zonas e cores sozinhos quando o jogo abre.<br>
+            Por enquanto, use a <b>Tela</b>: ela já captura jogos em janela e em tela cheia sem bordas.</p>
+          <button class="btn" data-goto="tela"><svg><use href="#i-screen"/></svg>Ir para Tela</button>
+        </div>
+      </section>
+
+      <!-- ===================== ÁUDIO ===================== -->
+      <section class="view" id="view-audio">
+        <div class="split">
+          <div class="col-main">
+            <div class="kind-tabs" role="tablist">
+              <button class="kind-tab" data-tab="fan" role="tab"><svg><use href="#i-gear"/></svg>Cooler (CPU)<span class="n"></span></button>
+              <button class="kind-tab" data-tab="strip" role="tab"><svg><use href="#i-screen"/></svg>Fita (Monitor)<span class="n"></span></button>
+            </div>
+            <div class="card stage-card">
+              <div class="card-head"><h2><svg><use href="#i-music"/></svg>Visualização da música</h2>
+                <span class="hint">Escuta o som que sai do PC (sem microfone)</span></div>
+              <div class="stage" id="stage-audio"><canvas class="halo"></canvas><canvas class="scene"></canvas></div>
+            </div>
+            <div class="mode-grid five" data-group="@.audio.mode" data-mode="audio">
+              <button class="mode-card" data-value="pulse"><svg><use href="#i-bolt"/></svg><b>Pulso</b><small>A fita toda pulsa com os graves</small></button>
+              <button class="mode-card" data-value="spectrum"><svg><use href="#i-grid"/></svg><b>Espectro</b><small>Graves no meio, agudos nas pontas</small></button>
+              <button class="mode-card" data-value="energy"><svg><use href="#i-sun"/></svg><b>Energia</b><small>Medidor de volume a partir do centro</small></button>
+              <button class="mode-card" data-value="ripple"><svg><use href="#i-music"/></svg><b>Ondas</b><small>Cada batida solta uma onda</small></button>
+              <button class="mode-card" data-value="space"><svg><use href="#i-chip"/></svg><b>Volume no espaço</b><small>Anel com os graves, moldura com os agudos</small></button>
+            </div>
+            <div class="action-row">
+              <button class="btn primary big start-btn"><svg><use href="#i-play"/></svg><span>Iniciar Halo</span></button>
+              <button class="btn square stop-btn" title="Parar"><svg><use href="#i-stop"/></svg></button>
+              <div class="stats">
+                <div><small>FPS</small><b class="st-fps">0</b></div>
+                <div><small>Latência</small><b class="st-lat">— ms</b></div>
+                <div class="grow"><small>Consumo</small><b class="st-ma">0 mA</b><span class="meter"><i class="st-meter"></i></span></div>
+              </div>
+            </div>
+          </div>
+          <div class="col-side">
+            <div class="card out-card">
+              <div class="card-head"><h2><svg><use href="#i-chip"/></svg>Saída</h2>
+                <button class="btn small" data-goto="dispositivos">Editar saídas</button></div>
+              <div class="out-pick"></div>
+              <div class="field"><label>Modo</label><select class="mode-sel" data-bind="@.mode"></select></div>
+              <p class="hint out-hint"></p>
+              <div class="group-note"></div>
+            </div>
+
+            <div class="card">
+              <div class="card-head"><h2><svg><use href="#i-music"/></svg>Ajustes</h2></div>
+              <div class="field slider-field"><label>Sensibilidade</label>
+                <input type="range" min="1" max="10" step="0.5" data-bind="@.audio.sensitivity" data-type="float"><output class="val" data-fmt="dec1"></output>
+              </div>
+              <div class="field"><label>Cor 1</label><input type="color" data-bind="@.audio.colors.0" data-type="color"></div>
+              <div class="field"><label>Cor 2</label><input type="color" data-bind="@.audio.colors.1" data-type="color"></div>
+              <div class="swatches" data-target="@.audio.colors">
+                <button style="--a:#2E7CD6;--b:#C9A56B" title="Azul e dourado"></button>
+                <button style="--a:#7B3FF2;--b:#FF4FA3" title="Violeta e rosa"></button>
+                <button style="--a:#00D1B2;--b:#2E7CD6" title="Turquesa e azul"></button>
+                <button style="--a:#FF6A00;--b:#FF0040" title="Fogo"></button>
+              </div>
+            </div>
+            <div class="card">
+              <div class="card-head"><h2><svg><use href="#i-sun"/></svg>Brilho</h2></div>
+              <div class="field slider-field"><label>Desta saída</label>
+                <input type="range" min="0" max="1" step="0.01" data-bind="@.brightness" data-type="float"><output class="val" data-fmt="pct"></output>
+              </div>
+              <div class="field slider-field"><label>Global</label>
+                <input type="range" min="0" max="1" step="0.01" data-bind="color.brightness" data-type="float"><output class="val" data-fmt="pct"></output>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ===================== EFEITOS ===================== -->
+      <section class="view" id="view-efeitos">
+        <div class="split">
+          <div class="col-main">
+            <div class="kind-tabs" role="tablist">
+              <button class="kind-tab" data-tab="fan" role="tab"><svg><use href="#i-gear"/></svg>Cooler (CPU)<span class="n"></span></button>
+              <button class="kind-tab" data-tab="strip" role="tab"><svg><use href="#i-screen"/></svg>Fita (Monitor)<span class="n"></span></button>
+            </div>
+            <div class="card stage-card">
+              <div class="card-head"><h2><svg><use href="#i-wand"/></svg>Prévia do efeito</h2></div>
+              <div class="stage" id="stage-efeitos"><canvas class="halo"></canvas><canvas class="scene"></canvas></div>
+            </div>
+            <div class="mode-grid six compact" data-group="@.effect.kind" data-mode="effect">
+              <button class="mode-card" data-value="static"><b>Estático</b><small>Uma cor fixa</small></button>
+              <button class="mode-card" data-value="breathing"><b>Respiração</b><small>Acende e apaga devagar</small></button>
+              <button class="mode-card" data-value="rainbow"><b>Arco-íris</b><small>Todas as cores, em sequência</small></button>
+              <button class="mode-card" data-value="wave"><b>Onda</b><small>Arco-íris correndo pela fita</small></button>
+              <button class="mode-card" data-value="gradient"><b>Gradiente</b><small>Duas cores se movendo</small></button>
+              <button class="mode-card" data-value="comet"><b>Cometa</b><small>Um ponto com rastro</small></button>
+              <button class="mode-card" data-value="orbit"><b>Órbita dupla</b><small>Anel e moldura girando ao contrário</small></button>
+              <button class="mode-card" data-value="ripples"><b>Ondas na água</b><small>Anéis saindo do centro</small></button>
+              <button class="mode-card" data-value="radar"><b>Radar</b><small>Feixe girando com rastro</small></button>
+              <button class="mode-card" data-value="seesaw"><b>Gangorra</b><small>Os lados trocam de cor</small></button>
+              <button class="mode-card" data-value="scanner"><b>Varredura</b><small>Faixa indo e voltando</small></button>
+              <button class="mode-card" data-value="yinyang"><b>Yin-yang</b><small>Duas metades girando</small></button>
+              <button class="mode-card" data-value="fire"><b>Fogo</b><small>Chamas subindo de baixo</small></button>
+              <button class="mode-card" data-value="aurora"><b>Aurora</b><small>Cores fluindo devagar</small></button>
+              <button class="mode-card" data-value="twinkle"><b>Céu estrelado</b><small>Brilhos que acendem e somem</small></button>
+              <button class="mode-card" data-value="heartbeat"><b>Batimento</b><small>Pulso duplo do centro</small></button>
+              <button class="mode-card" data-value="spiral"><b>Espiral</b><small>Arco-íris em espiral</small></button>
+              <button class="mode-card" data-value="kaleido"><b>Caleidoscópio</b><small>Simetria espelhada girando</small></button>
+            </div>
+            <div class="action-row">
+              <button class="btn primary big start-btn"><svg><use href="#i-play"/></svg><span>Iniciar Halo</span></button>
+              <button class="btn square stop-btn" title="Parar"><svg><use href="#i-stop"/></svg></button>
+              <div class="stats">
+                <div><small>FPS</small><b class="st-fps">0</b></div>
+                <div><small>Latência</small><b class="st-lat">— ms</b></div>
+                <div class="grow"><small>Consumo</small><b class="st-ma">0 mA</b><span class="meter"><i class="st-meter"></i></span></div>
+              </div>
+            </div>
+          </div>
+          <div class="col-side">
+            <div class="card out-card">
+              <div class="card-head"><h2><svg><use href="#i-chip"/></svg>Saída</h2>
+                <button class="btn small" data-goto="dispositivos">Editar saídas</button></div>
+              <div class="out-pick"></div>
+              <div class="field"><label>Modo</label><select class="mode-sel" data-bind="@.mode"></select></div>
+              <p class="hint out-hint"></p>
+              <div class="group-note"></div>
+            </div>
+
+            <div class="card">
+              <div class="card-head"><h2><svg><use href="#i-wand"/></svg>Ajustes</h2></div>
+              <div class="field slider-field"><label>Velocidade</label>
+                <input type="range" min="1" max="10" step="0.5" data-bind="@.effect.speed" data-type="float"><output class="val" data-fmt="dec1"></output>
+              </div>
+              <div class="field slider-field" data-effects="comet orbit ripples radar seesaw scanner yinyang fire aurora twinkle heartbeat spiral kaleido"><label id="size-label">Tamanho</label>
+                <input type="range" min="0" max="1" step="0.01" data-bind="@.effect.size" data-type="float"><output class="val" data-fmt="pct"></output>
+              </div>
+              <div class="field slider-field" data-effects="scanner seesaw"><label>Ângulo</label>
+                <input type="range" min="0" max="180" step="5" data-bind="@.effect.angle" data-type="float"><output class="val" data-fmt="deg"></output>
+              </div>
+              <div class="field slider-field" id="fan-phase-field"><label>Defasar fans</label>
+                <input type="range" min="0" max="1" step="0.05" data-bind="@.effect.fan_phase" data-type="float"><output class="val" data-fmt="phase"></output>
+              </div>
+              <div class="field"><label>Cor 1</label><input type="color" data-bind="@.effect.colors.0" data-type="color"></div>
+              <div class="field"><label>Cor 2</label><input type="color" data-bind="@.effect.colors.1" data-type="color"></div>
+              <div class="swatches" data-target="@.effect.colors">
+                <button style="--a:#C9A56B;--b:#2E7CD6" title="Dourado e azul"></button>
+                <button style="--a:#FF4FA3;--b:#7B3FF2" title="Rosa e violeta"></button>
+                <button style="--a:#FFFFFF;--b:#0B2438" title="Branco"></button>
+                <button style="--a:#FF6A00;--b:#FF0040" title="Fogo"></button>
+              </div>
+            </div>
+            <div class="card" id="cascade-card" hidden>
+              <div class="card-head"><h2><svg><use href="#i-refresh"/></svg>Cascata entre grupos</h2></div>
+              <div class="field slider-field"><label>Defasar entre grupos</label>
+                <input type="range" id="group-phase" min="0" max="1" step="0.05"><output class="val" data-fmt="gphase"></output>
+              </div>
+              <p class="hint">Em <b>Juntos</b> (sincronizado), todos os grupos mostram o mesmo no mesmo instante. Subindo, o efeito corre de um grupo para o outro nesta ordem:</p>
+              <div class="cascade-list" id="cascade-list"></div>
+            </div>
+            <div class="card">
+              <div class="card-head"><h2><svg><use href="#i-sun"/></svg>Brilho</h2></div>
+              <div class="field slider-field"><label>Desta saída</label>
+                <input type="range" min="0" max="1" step="0.01" data-bind="@.brightness" data-type="float"><output class="val" data-fmt="pct"></output>
+              </div>
+              <div class="field slider-field"><label>Global</label>
+                <input type="range" min="0" max="1" step="0.01" data-bind="color.brightness" data-type="float"><output class="val" data-fmt="pct"></output>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ===================== DISPOSITIVOS ===================== -->
+      <section class="view" id="view-dispositivos">
+        <div class="grid-2">
+          <div class="card">
+            <div class="card-head"><h2><svg><use href="#i-chip"/></svg>Arduino (Adalight)</h2></div>
+            <div class="field"><label>Porta serial</label>
+              <div class="with-btn">
+                <select id="sel-port" data-bind="serial.port"></select>
+                <button class="btn square small" id="btn-ports" title="Procurar portas de novo"><svg><use href="#i-refresh"/></svg></button>
+              </div>
+            </div>
+            <div class="field"><label>Baud rate</label>
+              <select data-bind="serial.baud" data-type="int">
+                <option value="115200">115200</option>
+                <option value="230400">230400</option>
+                <option value="500000">500000</option>
+                <option value="1000000">1000000</option>
+                <option value="2000000">2000000</option>
+              </select>
+            </div>
+            <label class="toggle"><input type="checkbox" data-bind="serial.simulate"><span></span>Simular saída (não abre a porta COM)</label>
+            <p class="hint" id="baud-hint"></p>
+            <div class="device-status">
+              <span class="big-dot" id="dev-dot"></span>
+              <div><b id="dev-state">Simulação</b><small id="dev-sub">Arduino UNO</small></div>
+              <button class="btn primary" id="btn-apply-outs" title="Manda pinos, quantidades e ordem de cor ao Arduino"><svg><use href="#i-refresh"/></svg>Enviar saídas</button>
+            </div>
+            <p class="hint" id="fw-line">Firmware: ainda não conectado.</p>
+          </div>
+
+          <div class="card" id="outs-card">
+            <div class="card-head"><h2><svg><use href="#i-chip"/></svg>Saídas</h2><span class="hint" id="outs-total"></span></div>
+            <p class="hint">Cada saída é um pino do Arduino com uma fan ou uma fita. No quadro, os LEDs vão nesta ordem.</p>
+            <div class="out-list" id="out-list"></div>
+            <div class="map-row">
+              <button class="btn" id="add-fan">+ Cooler (fan)</button>
+              <button class="btn" id="add-strip">+ Fita de LED</button>
+            </div>
+            <div class="warn-box" id="outs-warn" hidden></div>
+          </div>
+
+          <div class="card span-2" id="out-editor">
+            <div class="card-head"><h2><svg><use href="#i-grid"/></svg><span id="ed-title">Saída</span></h2>
+              <button class="btn small" id="btn-test-out" title="Abre a porta por ~5 s e acende só esta saída"><svg><use href="#i-play"/></svg>Testar esta saída</button></div>
+            <div class="editor">
+              <div class="editor-fields">
+                <div class="field"><label>Nome</label><input type="text" maxlength="24" data-bind="@.name"></div>
+                <div class="field"><label>Pino</label><select id="ed-pin" data-bind="@.pin" data-type="int"></select></div>
+                <div class="field"><label>Tipo</label>
+                  <select data-bind="@.kind"><option value="fan">Cooler (CPU): fan</option><option value="strip">Fita (Monitor)</option></select>
+                </div>
+                <div class="field"><label>Pixels</label><input type="number" min="1" max="300" data-bind="@.leds.count" data-type="int"></div>
+                <div class="field"><label>Ordem de cor</label>
+                  <select data-bind="@.color_order" data-type="int">
+                    <option value="2">GRB (WS2812B)</option><option value="0">RGB</option><option value="1">RBG</option>
+                    <option value="3">GBR</option><option value="4">BRG</option><option value="5">BGR</option>
+                  </select>
+                </div>
+                <div class="field"><label>Modo</label><select class="mode-sel" data-bind="@.mode"></select></div>
+                <div class="field" data-kind="fan"><label>Fans em paralelo</label><input type="number" min="1" max="20" data-bind="@.parallel" data-type="int"></div>
+                <div class="field" data-kind="fan"><label>LEDs por pixel</label><input type="number" min="1" max="4" data-bind="@.leds_per_pixel" data-type="int"></div>
+                <div class="field slider-field"><label>Brilho da saída</label>
+                  <input type="range" min="0" max="1" step="0.01" data-bind="@.brightness" data-type="float"><output class="val" data-fmt="pct"></output>
+                </div>
+                <div class="field toggle-field">
+                  <label class="toggle"><input type="checkbox" data-bind="@.power_limit"><span></span>Limite de consumo</label>
+                  <select data-bind="@.max_current_ma" data-type="int" class="compact">
+                    <option value="450">450 mA</option><option value="1000">1 A</option><option value="1500">1,5 A</option>
+                    <option value="2000">2 A</option><option value="3000">3 A</option><option value="4000">4 A</option><option value="6000">6 A</option><option value="8000">8 A</option>
+                  </select>
+                </div>
+                <p class="hint" id="ed-power"></p>
+                <div class="warn-box" id="ed-nolimit" hidden></div>
+              </div>
+              <div class="editor-side">
+                <div class="stage small" id="stage-leds"><canvas class="halo"></canvas><canvas class="scene"></canvas></div>
+                <div data-kind="fan">
+                  <div class="map-row">
+                    <button class="btn primary" id="btn-mapper"><svg><use href="#i-grid"/></svg>Mapear LEDs</button>
+                    <button class="btn" id="btn-unmap">Apagar mapa</button>
+                    <span class="hint" id="map-status"></span>
+                  </div>
+                </div>
+                <div data-kind="strip" class="strip-map">
+                  <div class="field slider-field"><label>Primeiro LED na zona</label>
+                    <input type="range" id="leds-offset" min="0" max="59" step="1" data-bind="@.leds.offset" data-type="int"><output class="val"></output>
+                  </div>
+                  <div class="field"><label>Sentido da fita</label>
+                    <select data-bind="@.leds.reverse" data-type="bool">
+                      <option value="false">Horário</option>
+                      <option value="true">Anti-horário</option>
+                    </select>
+                  </div>
+                  <details class="advanced">
+                    <summary>Mapeamento manual (LED → zona)</summary>
+                    <p class="hint">Um número de zona por LED (−1 apaga o LED). Vazio = distribuir sozinho. As zonas contam no sentido horário a partir do canto inferior esquerdo.</p>
+                    <textarea id="leds-map" rows="3" placeholder="ex.: 0, 1, 2, -1, 3"></textarea>
+                    <button class="btn small" id="btn-map">Aplicar mapeamento</button>
+                  </details>
+                  <button class="btn small" id="btn-zones">Ajustar as zonas na tela Tela</button>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="card span-2">
+            <div class="card-head"><h2><svg><use href="#i-plug"/></svg>OpenRGB (modo Direct)</h2>
+              <label class="toggle inline"><input type="checkbox" data-bind="openrgb.enabled"><span></span>Enviar também ao OpenRGB</label></div>
+            <p class="hint">Só aparecem como disponíveis os dispositivos com modo Direct que <b>não gravam na memória</b> a cada atualização. A placa-mãe e o teclado ficam bloqueados para não desgastar a memória deles.</p>
+            <div class="row">
+              <div class="field"><label>Servidor</label><input type="text" data-bind="openrgb.host"></div>
+              <div class="field"><label>Porta</label><input type="number" data-bind="openrgb.port" data-type="int"></div>
+              <button class="btn" id="btn-openrgb"><svg><use href="#i-refresh"/></svg>Listar dispositivos</button>
+            </div>
+            <div class="device-list" id="openrgb-list"><p class="hint">Clique em “Listar dispositivos” com o OpenRGB aberto como servidor.</p></div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ===================== CONFIGURAÇÕES ===================== -->
+      <section class="view" id="view-config">
+        <div class="grid-2">
+          <div class="card">
+            <div class="card-head"><h2><svg><use href="#i-gear"/></svg>Geral</h2></div>
+            <div class="field"><label>Ao abrir o app</label>
+              <select id="sel-autostart">
+                <option value="">Não iniciar nada</option>
+                <option value="on">Iniciar o Halo (cada saída no modo dela)</option>
+              </select>
+            </div>
+            <button class="btn" id="btn-reset"><svg><use href="#i-refresh"/></svg>Restaurar padrões</button>
+          </div>
+          <div class="card" id="boot-card">
+            <div class="card-head"><h2><svg><use href="#i-play"/></svg>Iniciar com o Windows</h2>
+              <label class="toggle inline" title="Ligar ou desligar"><input type="checkbox" id="opt-autostart"><span></span></label></div>
+            <p class="hint" id="autostart-info">—</p>
+            <label class="toggle"><input type="checkbox" data-bind="app.resume"><span></span>Religar as luzes se estavam ligadas quando o PC desligou</label>
+            <p class="hint">O <b>X</b> da janela deixa o Halo rodando na bandeja, perto do relógio. Para sair de vez, clique com o botão direito no ícone e escolha <b>Sair</b>, ou use o botão abaixo.</p>
+            <button class="btn" id="btn-quit"><svg><use href="#i-stop"/></svg>Sair do Halo Studio (apaga os LEDs)</button>
+          </div>
+          <div class="card">
+            <div class="card-head"><h2><svg><use href="#i-folder"/></svg>Arquivo de configuração</h2></div>
+            <p class="hint">Tudo (zonas, mapeamento de LEDs, cores e saídas) é salvo em JSON sozinho a cada mudança:</p>
+            <code class="path" id="cfg-path">—</code>
+          </div>
+          <div class="card span-2 about">
+            <span class="logo big" aria-hidden="true"></span>
+            <div>
+              <h2>Halo Studio <small>v0.1</small></h2>
+              <p class="hint">Transforme sua tela em ambiente. Captura com DXGI Desktop Duplication reduzida na GPU, som por loopback WASAPI e saída Adalight para Arduino ou OpenRGB.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <div class="modal" id="mapper" hidden>
+    <div class="modal-card">
+      <div class="card-head">
+        <h2><svg><use href="#i-grid"/></svg>Mapear LEDs</h2>
+        <button class="win-btn modal-x" id="map-x" title="Fechar (Esc)"><svg><use href="#i-close"/></svg></button>
+      </div>
+
+      <div class="map-step" data-step="setup">
+        <p class="hint">O assistente acende um pixel por vez no Arduino. Você clica no desenho onde ele acendeu, e os efeitos passam a usar essas posições. A porta COM só fica aberta enquanto o assistente estiver aberto.</p>
+        <div class="field"><label>Desenho</label>
+          <select id="map-shape"><option value="fan">Fan vista de frente</option><option value="strip">Fita / retângulo</option></select>
+        </div>
+        <div class="field" id="map-fans-field"><label>Fans em sequência</label><input type="number" id="map-fans" min="1" max="12"></div>
+        <div class="field"><label>Pixels no total</label><input type="number" id="map-count" min="1" max="300"></div>
+        <p class="hint">A fan Acegeek tem 11 pixels: 2 fans = 22, 3 fans = 33.</p>
+        <div class="map-actions">
+          <button class="btn" data-map-close>Cancelar</button>
+          <button class="btn primary" id="map-begin"><svg><use href="#i-play"/></svg>Começar</button>
+        </div>
+      </div>
+
+      <div class="map-step" data-step="map">
+        <div class="map-top">
+          <b id="map-title">Pixel 1 de 11</b>
+          <span class="hint">Clique onde acendeu. Se acendeu em dois lugares, marque o 2º com o botão direito (ou Shift + clique).</span>
+        </div>
+        <canvas class="map-canvas" id="map-canvas"></canvas>
+        <div class="map-actions">
+          <button class="btn" id="map-back" title="Backspace">← Voltar</button>
+          <button class="btn" id="map-skip" title="S">Não acendeu nada</button>
+          <button class="btn" id="map-redo" title="R">Refazer</button>
+          <span class="keys">S pula • Backspace volta • R refaz • Enter conclui</span>
+          <button class="btn primary" id="map-done" title="Enter">Concluir</button>
+        </div>
+      </div>
+
+      <div class="map-step" data-step="preview">
+        <div class="map-top">
+          <b>Confira a onda girando</b>
+          <span class="hint">A fan e o desenho devem girar suaves e no mesmo sentido. Se algum pixel pular, volte e ajuste.</span>
+        </div>
+        <canvas class="map-canvas" id="map-preview"></canvas>
+        <div class="map-actions">
+          <button class="btn" id="map-adjust">← Voltar e ajustar</button>
+          <button class="btn" id="map-redo2">Refazer</button>
+          <button class="btn primary" id="map-save">Salvar mapa</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div id="toasts"></div>
+  <script src="main.js"></script>
+</body>
+</html>

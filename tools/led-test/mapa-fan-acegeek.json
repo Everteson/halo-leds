@@ -1,0 +1,23 @@
+{
+  "descricao": "Mapa de uma fan Acegeek ARGB com espelho infinito, medido LED por LED com led-test.mjs em 2026-10-28 (fan vista de frente)",
+  "pixelsPorFan": 11,
+  "nota": "Medido pelo assistente do Halo Studio: sao DOIS circulos no sentido horario. Anel interno = pixels 1-6 (1 as 3h, 2 as 5h, 3 as 7h, 4 as 9h, 5 as 11h, 6 a 1h). Moldura externa = pixels 1-11 (1 lateral direita meio, 2-3 descendo, 4 canto inferior direito, 5 base meio, 6 lateral esquerda baixo, 7 lateral esquerda meio, 8 lateral esquerda alto, 9-10 canto superior esquerdo, 11 lateral direita alto). Os pixels 1-6 acendem um LED em cada circulo, em angulos diferentes.",
+  "pixels": [
+    { "indice": 0, "onde": "anel: lado direito, meio + lateral (meio)" },
+    { "indice": 1, "onde": "anel: ~30 graus abaixo do pixel 0 + lateral" },
+    { "indice": 2, "onde": "anel: lado esquerdo, meio + 1 LED na lateral direita" },
+    { "indice": 3, "onde": "anel: acima do pixel 2 + lateral direita" },
+    { "indice": 4, "onde": "anel: mais acima + borda inferior direita" },
+    { "indice": 5, "onde": "miolo: parte superior esquerda + borda inferior esquerda" },
+    { "indice": 6, "onde": "lateral esquerda, meio (sozinho)" },
+    { "indice": 7, "onde": "superior esquerda (sozinho)" },
+    { "indice": 8, "onde": "superior esquerda, um pouco a direita: detalhe decorativo" },
+    { "indice": 9, "onde": "superior esquerda: outro detalhe decorativo" },
+    { "indice": 10, "onde": "detalhe decorativo do outro lado" }
+  ],
+  "observacoes": [
+    "Indices comecam em 0 (LED 1 = indice 0). O indice 11 (LED 12) nao acende nada: a fan termina no 11.",
+    "Fans em sequencia: a fan N comeca no indice N*11.",
+    "Posicoes aproximadas; o ideal e um assistente visual de mapeamento (clicar onde acendeu)."
+  ]
+}

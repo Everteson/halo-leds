@@ -1,0 +1,14 @@
+{
+  "name": "halo-led-test",
+  "private": true,
+  "type": "module",
+  "description": "Teste e mapeamento dos LEDs ligados no Arduino (firmware halo-adalight)",
+  "scripts": {
+    "andar": "node led-test.mjs andar",
+    "contar": "node led-test.mjs contar",
+    "arcoiris": "node led-test.mjs arcoiris"
+  },
+  "dependencies": {
+    "serialport": "^13"
+  }
+}
